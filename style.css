@@ -1,0 +1,96 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    border: 1px solid gray;
+
+}
+
+.cart-button {
+    display: block;
+    margin-left: auto;
+    padding: 8px 12px;
+    border-radius: 30%;
+    border: 1px solid gray;
+}
+
+main {
+
+}
+
+.goods-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 100px;
+}
+
+.goods-list__item {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 350px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+}
+
+
+.goods-list__item img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    
+}
+
+.goods-list__item .heading {
+    padding: 5px;
+    color: #000;
+    text-align: center;
+}
+
+.goods-list__item .price {
+    color: #2f2f2f;
+    text-align: right;
+}
+
+.goods-list__item .button {
+    display: block;
+    margin-left: auto;
+    margin-top: auto;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+
+
+.basket {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: gray;
+    width: 400px;
+    height: 100%;
+    border-left: 1px solid gray;
+}
+
+.basketgoods-list__item {
+    margin: 5px;
+    padding-top: 5px;
+    top: 5px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.basketgoods-list__item .button {
+    width: 50px;
+    margin-left: auto;
+    padding: 4px 6px;
+    border-radius: 30px;
+    border: 1px solid gray;
+}
