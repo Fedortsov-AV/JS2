@@ -13,6 +13,8 @@ let goods = [
     { title: 'Shoes', price: 250 },
     ];
 
+    const basketName = 'Добавить в корзину';
+    
     
 const renderList = (items) => {
         return items.map(item => {
@@ -30,7 +32,7 @@ const renderList = (items) => {
     };
 
     const renderBasketList = (items) => {
-        return items.map(item => {
+        return items.map((item) => {
             return `
                 <div class ="basketgoods-list__item">
                     <span class="heading">${item.product_name}</span>
@@ -46,18 +48,99 @@ const insertCode = (container, html) => {
         container.innerHTML = html; 
     };
 
+class Product {
+    constructor (title, price){
+        this.title = title;
+        this.price = price;
+    }
+
+    addToBasket(){
+
+
+    }
+
+    render() {
+        return `
+            <div class ="goods-list__item">
+                <img />
+                <span class="heading">${this.title}</span>
+                <span class="price">${this.price}</span>
+                <a class="button" href="#">${basketName}</a>
+            </div>
+            `;
+    }
+}
+
+class Goods  {
+    constructor(goods){
+        this.goods = goods;
+    }
+
+    render (container) {
+        let html = '';
+        for (let i in this.goods){
+            const goodsItem = this.goods[i];
+            html += goodsItem.render();
+        }
+        container.innerHTML = html;
+    }
+
+}
+
+// 1. Добавьте пустые классы для корзины товаров и элемента 
+// корзины товаров. Продумайте, какие методы понадобятся для 
+// работы с этими сущностями.
+// 2. Добавьте для GoodsList метод, определяющий суммарную 
+// стоимость всех товаров.
+
+class Basket {      //Класс для корзины
+    
+        
+}
+
+class GoodsInBasketList { // Класс для элемента корзины
+    constructor (){
+        this.goodsInBasket = [
+            { title: 'Shirt', price: 150 },
+        ];
+    }
+
+    //Метод удаления товара из корзины
+    removeFromBasket (){ 
+
+    }
+    //Метод подсчета стоимости товаров в корзине
+    costGoodsInBasket() {
+        return this.goodsInBasket.reduce((cost, item) => cost + item.price, 0);      
+    }
+    //Метод подсчета количества наименований товаров в корзине
+    countGoodsInBasket() {
+        return this.goodsInBasket.length;
+    }
+    //Метод отрисовки товаров в корзине
+    render(){
+        
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     let isBasket = false;
-    const r = await fetch(`${baseUrl}${getListUrl}`);
-    goods = await r.json();
+    // const r = await fetch(`${baseUrl}${getListUrl}`);
+    // goods = await r.json();
+    const items = goods.map((product) => new Product(product.title, product.price)); 
+    const goodsList = new Goods(items);
+
+
     let basketGoods = await (await fetch(`${baseUrl}${getBasketUrl}`)).json();
     let goodsInBasket = basketGoods.contents
-    console.log(goodsInBasket);
+    
     
     const listElement = document.querySelector('.goods-list');
     const basketList = document.querySelector('.basket-list')
     
-    insertCode(listElement, renderList(goods));
+    goodsList.render(listElement);
+    
+    // insertCode(listElement, renderList(goods));
     insertCode(basketList, renderBasketList(goodsInBasket))
 
     const cartBtn = document.querySelector('.cart-button');

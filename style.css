@@ -43,9 +43,20 @@ main {
 .goods-list__item img {
     display: block;
     width: 100%;
+    height: 200px;
     
 }
 
+.goods-list__item .heading {
+    padding: 5px;
+    color: #000;
+    text-align: center;
+}
+
+.goods-list__item .price {
+    color: #2f2f2f;
+    text-align: right;
+}
 
 .goods-list__item .button {
     display: block;
